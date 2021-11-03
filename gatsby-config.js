@@ -1,17 +1,17 @@
 module.exports = {
   // Customize your site metadata:
   siteMetadata: {
-    title: `My Blog Title`,
-    author: `My Name`,
-    description: `My site description...`,
+    title: `Max's Space`,
+    author: `Max Anselmo`,
+    description: `A place where one devoted developer describes developing developments.`,
     social: [
       {
-        name: `twitter`,
-        url: `https://twitter.com/gatsbyjs`,
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/maxanselmo/`,
       },
       {
         name: `github`,
-        url: `https://github.com/gatsbyjs`,
+        url: `https://github.com/themanselmo`,
       },
     ],
   },

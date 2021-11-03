@@ -1,0 +1,86 @@
+---
+title: Intro to CRUD with Javascript
+date: 2021-11-03
+image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsvitla.com%2Fuploads%2F0%2F2135-database_management_software.jpg%3F1560161553&f=1&nofb=1'
+imageAlt: A database.
+---
+
+So you want to write your own CRUD functionality in JavaScript? Well this is the right place to be!
+But first off, what the heck is CRUD?
+
+**CRUD** stands for:
+**C**reate - **R**ead - **U**pdate - **D**elete
+
+These are the four cardinal functions used when interacting with a database or dealing with data in general, and to use that functionality in JavaScript, we're going to use something called `fetch` to make a http request.
+
+`fetch` is a built in JavaScript function that is not compatible with older browsers, but works very well with the modern browsers that do support it.
+
+`fetch` takes in an *address* where the http request should be sent to, and optionally takes in *options* (method, headers, body, etc) and returns a promise (the container that our fetch response is in).
+
+The most basic fetch request is a **Get** request. This is an example of our **Read** crud functionality.
+
+Here is how we will set up our get request using fetch:
+```
+const whereWeWantToFetch = "url"
+fetch(whereWeWantToFetch)
+.then(res => res.json())
+.then(data => console.log(data))
+```
+When no `method` is included, and the only argument passed to `fetch` is the url, the default operation will be a **Get** request.
+
+The *url* is going to be where we are fetching to, where our database is.
+We *then* convert our promise returned from our fetch to usable json, and finally *then* take our **data** and do whatever we want with it! (Although here we simply console.log it)
+
+The next example request is a **Post** request. This is an example of our **Create** crud functionality.
+Here is how we will set up our post request:
+```
+const whatIWantToPost = "Post me!"
+const whereWeWantToFetch = "url"
+fetch(whereWeWantToFetch, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(whatIWantToPost)
+})
+.then(res => res.json())
+.then(data => console.log(data))
+```
+Notice the post requires a few extra bits compared to our get request. Here we need to include a *method* (what we are doing, here we are POSTing), *headers* (letting the server know what type of data to expect from the post request), and a *body* (what we are sending in the post request)
+
+The third example request is a **Patch** request. This is an example of our **Update** crud functionality.
+Here is how we will set up our Patch request:
+```
+const itemToUpdate = {...}
+const whereWeWantToFetch = "url/${itemToUpdate.id}"
+fetch(whereWeWantToFetch, {
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        key: "updatedValue"
+    })
+})
+.then(res => res.json())
+.then(data => console.log(data))
+```
+The patch request is similar to post, however here we are updating an existing item in our database.
+Notice here we have to include an **id** at the end of our url to specify which item in our database we would like to update.
+
+The final and relatively simple request is our **Delete** request, completing our CRUD acronym.
+```
+const itemToDelete = {...}
+const whereWeWantToFetch = "url/${itemToDelete.id}"
+fetch(whereWeWantToFetch, {
+    method: "DELETE"
+})
+```
+Delete requires no headers or body, only a method, as it is just removing something from our database.
+
+... and with that, you now have all the basics to implement CRUD functions into your JavaScript application!
+
+Here's some additional resources on the topic:
+[javascript docs](https://javascript.info/fetch)
+[mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+[w3schools](https://www.w3schools.com/js/js_api_fetch.asp)

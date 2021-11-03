@@ -10,7 +10,7 @@ export default function Bio() {
     <>
       Hello, my name is <Themed.a href="http://manselmo.dev/">Max</Themed.a>!
       <br />
-      Here's what I've been up to...
+      Here's what I've been up to....
     </>
   )
 }
